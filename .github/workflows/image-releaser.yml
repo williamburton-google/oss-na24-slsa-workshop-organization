@@ -116,7 +116,7 @@ jobs:
           IMAGE: "${{ inputs.image }}@${{ inputs.digest }}"
         run: |
           set -euo pipefail
-          slsa-policy-evaluator release evaluate policies/release/org.json policies/release/ "${IMAGE}" "${ENVIRONMENT}"
+          slsa-policy release evaluate policies/release/org.json policies/release/ "${IMAGE}" "${ENVIRONMENT}"
           # NOTE: We can verify with:
           # cosign verify-attestation "${IMAGE}" --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity "${RELEASER_ID}" --type https://slsa.dev/release/v0.1 | jq -r '.payload' | base64 -d | jq
       - name: Final outcome
