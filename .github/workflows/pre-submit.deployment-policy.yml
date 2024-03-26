@@ -17,7 +17,7 @@ jobs:
         uses: laurentsimon/slsa-policy/actions/installer@v0.0.1
 
       - name: Validate release policy
-        working-directory: policies/release
+        working-directory: policies/deployment
         run: |
           set -euo pipefail
-          slsa-policy release validate org.json .
+          slsa-policy deployment validate org.json .
