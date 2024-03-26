@@ -103,7 +103,7 @@ jobs:
           token: "${{ github.token }}"
           persist-credentials: false
           fetch-depth: 1
-      - name: Install evaluator
+      - name: Install policy evaluator
         id: install
         continue-on-error: true
         uses: laurentsimon/slsa-policy/actions/installer@v0.0.1
