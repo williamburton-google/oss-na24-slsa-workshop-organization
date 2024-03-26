@@ -1,0 +1,23 @@
+name: Pre submits release policy
+on:
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions: read-all
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+
+      - name: Install policy engine
+        uses: laurentsimon/slsa-policy/actions/installer@v0.0.1
+
+      - name: Validate release policy
+        working-directory: policies/release
+        run: |
+          set -euo pipefail
+          slsa-policy release validate org.json .
