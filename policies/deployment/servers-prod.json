@@ -8,7 +8,7 @@
     },
     "packages":[
         {
-            "name": "docker.io/laurentsimon/slsa-project-echo-server",
+            "name": "docker.io/laurentsimon/oss-na24-slsa-workshop-project1-echo-server",
             "environment": {
                 "any_of": [
                     "prod"
@@ -16,7 +16,7 @@
             }
         },
         {
-            "name": "docker.io/laurentsimon/laurentsimon/database-server",
+            "name": "docker.io/laurentsimon/oss-na24-slsa-workshop-project2-another-server",
             "environment": {
                 "any_of": [
                     "prod"
@@ -24,20 +24,12 @@
             }
         },
         {
-            "name": "docker.io/laurentsimon/laurentsimon/logger",
+            "name": "docker.io/laurentsimon/oss-na24-slsa-workshop-project3-another-server",
             "environment": {
                 "any_of": [
                     "prod"
                 ]
             }
         },
-        {
-            "name": "docker.io/laurentsimon/laurentsimon/ids",
-            "environment": {
-                "any_of": [
-                    "prod"
-                ]
-            }
-        }
     ]
 }
