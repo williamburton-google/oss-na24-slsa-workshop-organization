@@ -113,9 +113,10 @@ jobs:
           DEPLOYER_ID: "https://github.com/${{ needs.detect-env.outputs.repository }}/.github/workflows/image-deployer.yml@${{ needs.detect-env.outputs.ref }}"
           POLICY_ID: ${{ inputs.policy-id }}
           IMAGE: "${{ inputs.image }}@${{ inputs.digest }}"
+        working-directory: policies/deployment
         run: |
           set -euo pipefail
-          slsa-policy deployment evaluate policies/deployment/org.json policies/deployment "${IMAGE}" "${POLICY_ID}" "${DEPLOYER_ID}"
+          slsa-policy deployment evaluate org.json . "${IMAGE}" "${POLICY_ID}" "${DEPLOYER_ID}"
           # NOTE: We can verify with:
           # cosign verify-attestation "${IMAGE}" --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity "${DEPLOYER_ID}" --type https://slsa.dev/deployment/v0.1 | jq -r '.payload' | base64 -d | jq
       - name: Final outcome
