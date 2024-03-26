@@ -1,4 +1,4 @@
-name: Pre submits release policy
+name: Pre submits deployment policy
 on:
   pull_request:
     branches: ["main"]
