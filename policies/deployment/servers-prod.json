@@ -1,7 +1,7 @@
 {
     "format":1,
     "protection": {
-        "service_account":"name@prod-project-id.iam.gserviceaccount.com"
+        "google_service_account":"name@prod-project-id.iam.gserviceaccount.com"
     },
     "build": {
         "require_slsa_level": 3
