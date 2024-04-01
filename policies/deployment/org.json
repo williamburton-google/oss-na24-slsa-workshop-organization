@@ -1,9 +1,9 @@
 {
     "format":1,
     "roots":{
-        "release":[
+        "publish":[
             {
-                "id":"https://github.com/laurentsimon/oss-na24-slsa-workshop-organization/.github/workflows/image-releaser.yml@refs/heads/main",
+                "id":"https://github.com/laurentsimon/oss-na24-slsa-workshop-organization/.github/workflows/image-publisher.yml@refs/heads/main",
                 "build":{
                     "max_slsa_level": 3
                 }

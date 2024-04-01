@@ -1,4 +1,4 @@
-name: Pre submits release policy
+name: Pre submits publish policy
 on:
   pull_request:
     branches: ["main"]
@@ -7,7 +7,7 @@ on:
 permissions: read-all
 
 jobs:
-  release:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -16,8 +16,8 @@ jobs:
       - name: Install policy engine
         uses: laurentsimon/slsa-policy/actions/installer@v0.0.1
 
-      - name: Validate release policy
-        working-directory: policies/release
+      - name: Validate publish policy
+        working-directory: policies/publish
         run: |
           set -euo pipefail
-          slsa-policy release validate org.json .
+          slsa-policy publish validate org.json .

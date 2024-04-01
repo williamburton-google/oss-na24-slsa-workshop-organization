@@ -7,7 +7,7 @@ on:
 permissions: read-all
 
 jobs:
-  release:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -16,7 +16,7 @@ jobs:
       - name: Install policy engine
         uses: laurentsimon/slsa-policy/actions/installer@v0.0.1
 
-      - name: Validate release policy
+      - name: Validate publish policy
         working-directory: policies/deployment
         run: |
           set -euo pipefail

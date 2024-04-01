@@ -1,4 +1,4 @@
-name: Release policy evaluator
+name: Publish policy evaluator
 
 permissions:
   contents: read
@@ -28,7 +28,7 @@ on:
         description: "Username to log into the container registry."
         type: string
       environment:
-        description: "The environment the image is for. Must match one of the fields defined in the release policy. Example: prod, dev, etc."
+        description: "The environment the image is for. Must match one of the fields defined in the publish policy. Example: prod, dev, etc."
         type: string
       continue-on-error:
         description: "Prevents a workflow run from failing when a job fails. Set to 'true' to allow a workflow run to pass when a job fails."
@@ -66,7 +66,7 @@ jobs:
           set -euo pipefail
           echo "outcome=$([ "$SUCCESS" == "true" ] && echo "success" || echo "failure")" >> "$GITHUB_OUTPUT"
 
-  # evaluate evaluates the release policy.
+  # evaluate evaluates the publish policy.
   evaluate:
     needs: [detect-env]
     outputs:
@@ -111,14 +111,14 @@ jobs:
         continue-on-error: true
         env:
           ENVIRONMENT: ${{ inputs.environment }}
-          RELEASER_ID: "https://github.com/${{ needs.detect-env.outputs.repository }}/.github/workflows/image-releaser.yml@${{ needs.detect-env.outputs.ref }}"
+          PUBLISHER_ID: "https://github.com/${{ needs.detect-env.outputs.repository }}/.github/workflows/image-publisher.yml@${{ needs.detect-env.outputs.ref }}"
           IMAGE: "${{ inputs.image }}@${{ inputs.digest }}"
-        working-directory: policies/release
+        working-directory: policies/publish
         run: |
           set -euo pipefail
-          slsa-policy release evaluate org.json . "${IMAGE}" "${ENVIRONMENT}"
+          slsa-policy publish evaluate org.json . "${IMAGE}" "${ENVIRONMENT}"
           # NOTE: We can verify with:
-          # cosign verify-attestation "${IMAGE}" --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity "${RELEASER_ID}" --type https://slsa.dev/release/v0.1 | jq -r '.payload' | base64 -d | jq
+          # cosign verify-attestation "${IMAGE}" --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity "${PUBLISHER_ID}" --type https://slsa.dev/publish/v0.1 | jq -r '.payload' | base64 -d | jq
       - name: Final outcome
         id: final
         env:
