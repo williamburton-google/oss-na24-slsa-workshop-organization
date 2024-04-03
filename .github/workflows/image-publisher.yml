@@ -106,7 +106,7 @@ jobs:
       - name: Install policy evaluator
         id: install
         continue-on-error: true
-        uses: laurentsimon/slsa-policy/actions/installer@v0.0.1
+        uses: slsa-framework/slsa-policy/actions/installer@v0.0.1
       - id: evaluate
         continue-on-error: true
         env:
