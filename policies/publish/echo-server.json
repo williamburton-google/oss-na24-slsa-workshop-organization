@@ -11,7 +11,7 @@
     "build":{
         "require_slsa_builder":"github_generator_level_3",
         "repository":{
-            "uri":"github.com/laurentsimon/oss-na24-slsa-workshop-project1"
+            "uri":"github.com/slsa-framework/oss-na24-slsa-workshop-project1"
         }
     }
 }
