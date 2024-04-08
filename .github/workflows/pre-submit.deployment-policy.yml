@@ -16,7 +16,7 @@ jobs:
       - name: Install policy engine
         uses: slsa-framework/slsa-policy/actions/installer@v0.0.1
 
-      - name: Validate publish policy
+      - name: Validate deployment policy
         working-directory: policies/deployment
         run: |
           set -euo pipefail
