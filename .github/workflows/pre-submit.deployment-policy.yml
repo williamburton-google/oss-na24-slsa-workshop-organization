@@ -7,7 +7,7 @@ on:
 permissions: read-all
 
 jobs:
-  publish:
+  deployment:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
